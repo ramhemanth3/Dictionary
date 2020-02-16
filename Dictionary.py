@@ -2,13 +2,14 @@ from tkinter import *
 from PyDictionary import PyDictionary
 
 ab = Tk()
-ab.geometry('400x300')
-meaning=""
+ab.geometry('1000x1000')
+meaning=StringVar(Tk())
 def find_Meaning():
     word=ent.get()
     dictionary= PyDictionary(word)
-    meaning = str( dictionary.printMeanings())
-    print(meaning)    
+    meaning.set(dictionary.printMeanings())
+    print(meaning)
+    lab = Label(ab, text = meaning).grid(row = 7, column = 2)
 
 def find_Synonym():
     word=ent.get()
@@ -31,6 +32,6 @@ btn2 = Button(ab, text = "Synonym",command=find_Synonym)
 btn2.grid(row=4,column=2)
 btn3 = Button(ab, text = "Antonym",command=find_Antonym)
 btn3.grid(row=4,column=3)
-labelMeaning = Label(ab,text=meaning).grid(row=5, column=0)
+labelMeaning = Label(ab,text=meaning).grid(row=7, column=2)
 
 ab.mainloop()
